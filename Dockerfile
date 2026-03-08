@@ -2,16 +2,12 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy package.json & install dependencies
-COPY package.json package-lock.json ./
+COPY package*.json ./
+
 RUN npm install
 
-# Copy source code
-COPY src/ ./src
-
-# Copy views folder
-COPY views/ ./views
+COPY . .
 
 EXPOSE 80
 
-CMD ["node", "src/index.js"]
+CMD ["npm","start"]
