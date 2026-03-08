@@ -10,8 +10,7 @@ pipeline {
 
         stage('Clone Code') {
             steps {
-                git branch: 'main',
-                git 'https://github.com/varsha-0411/7-wonders.git'
+                git branch: 'main', url: 'https://github.com/varsha-0411/7-wonders.git'
             }
         }
 
