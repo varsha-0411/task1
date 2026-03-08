@@ -1,13 +1,18 @@
 FROM node:20-alpine
 
+# Set working directory
 WORKDIR /app
 
-COPY package*.json ./
-
+# Copy package files and install dependencies
+COPY package.json package-lock.json ./
 RUN npm install
 
-COPY . .
+# Copy source and views
+COPY src ./src
+COPY views ./views
 
+# Expose port
 EXPOSE 80
 
-CMD ["npm","start"]
+# Start app
+CMD ["npm", "start"]
