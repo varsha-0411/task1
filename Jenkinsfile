@@ -22,10 +22,14 @@ pipeline {
 
         stage('Docker Login') {
             steps {
-                withCredentials([usernamePassword(credentialsId: 'DOCKER_CREDS',
-                usernameVariable: 'varsha0411',
-                passwordVariable: 'dckr_pat_JOSjSKXhXHbzgZbA616D_leZTqs1')]) {
-                    sh 'echo dckr_pat_JOSjSKXhXHbzgZbA616D_leZTqs1 | docker login -u varsha0411 --password-stdin'
+                withCredentials([usernamePassword(
+                credentialsId: 'DOCKER_CREDS',
+                usernameVariable: 'DOCKER_USER',
+                passwordVariable: 'DOCKER_PASS'
+                )]) {
+                    sh '''
+                    echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                    '''
                 }
             }
         }
